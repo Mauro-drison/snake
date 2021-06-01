@@ -14,12 +14,12 @@ stdscr=curses.initscr()
 #stdscr.getch()
 
 #para utilizar colores
-curses.start_color()
+#curses.start_color()
 #para darle el color: el primer parametro es el del texto y el segundo es el del fondo 
-curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
+#curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
 
-stdscr.addnstr("hola mundo", curses.color_pair(3))
-stdscr.getch()
+#stdscr.addnstr("hola mundo", curses.color_pair(3))
+#stdscr.getch()
 
 
-curses.endwin()
+#curses.endwin()
