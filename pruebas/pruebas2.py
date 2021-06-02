@@ -20,26 +20,30 @@ pantalla.nodelay(True)
 #===inicializacion de snake=====
 #===y de la fruta=====
 #============================
-#para utilizar colores
-curses.start_color()
-#para darle el color: el primer parametro es el del texto y el segundo es el del fondo 
-curses.init_pair(3, curses.COLOR_RED, curses.COLOR_YELLOW)
 
-
-x=0
+lista_frutas="o","*","#","m","$"
+frutaa=random.randint(0,4)
+trut=lista_frutas[frutaa]
+x=0 
 y=0
 snake=[[y,x]]
 fruta=[random.randrange(alto),random.randrange(ancho)]
-pantalla.addstr(fruta[0],fruta[1],"o")
+pantalla.addstr(fruta[0],fruta[1],trut)
 mov_horizontal = 1
 mov_vertical = 0
 
+
+#suma de puntaje
+suma_puntaje=0
 
 #============================
 #===comienzo del juego=====
 #============================
 
-while True:    
+while True:
+    lista_frutas="o","*","#","t","$"
+    frutaa=random.randint(0,4) 
+    trut=lista_frutas[frutaa]   
     #leemos la tecla
     tecla = pantalla.getch()        
     #le asignamos una dirección a cada cursor
@@ -55,6 +59,7 @@ while True:
     elif tecla==curses.KEY_DOWN:
         mov_horizontal = 0
         mov_vertical = 1
+
     elif tecla==10:
         break
     
@@ -74,7 +79,8 @@ while True:
     #verificamos si nos morfamos una fruta
     if fruta in snake:        
         fruta=[random.randrange(alto),random.randrange(ancho)]
-        pantalla.addstr(fruta[0],fruta[1],"o")
+        pantalla.addstr(fruta[0],fruta[1],trut)
+        suma_puntaje=1+suma_puntaje
     #sino, borramos la colita
     else:
         ultimaposicion = snake.pop()
@@ -84,9 +90,22 @@ while True:
     pantalla.addstr(snake[0][0],snake[0][1],"#")
 
     #pantalla.addstr(y,x, "#")   
-    
+print(suma_puntaje)   
 #Ponemos todo en su lugar    
 curses.nocbreak()
 pantalla.keypad(False)
 curses.echo()
 curses.endwin()
+'''
+stdscr = curses.initscr()
+while True:
+    c = stdscr.getch()
+    if c == ord('p'):
+        print("perra")
+    elif c == ord('q'):
+        break  # Exit the while loop
+    elif c == ord("w"):
+        
+    elif c == curses.KEY_HOME:
+        x = y = 0
+'''

@@ -15,22 +15,18 @@ curses.curs_set(0)
 pantalla.keypad(True)
 pantalla.nodelay(True)
 
-
 #============================
 #===inicializacion de snake=====
 #===y de la fruta=====
 #============================
-#para utilizar colores
-curses.start_color()
-#para darle el color: el primer parametro es el del texto y el segundo es el del fondo 
-curses.init_pair(3, curses.COLOR_RED, curses.COLOR_YELLOW)
-
-
-x=0
+lista_frutas="o","*","#","m","$"
+frutaa=random.randint(0,4)
+trut=lista_frutas[frutaa]
+x=0 
 y=0
 snake=[[y,x]]
 fruta=[random.randrange(alto),random.randrange(ancho)]
-pantalla.addstr(fruta[0],fruta[1],"o")
+pantalla.addstr(fruta[0],fruta[1],trut)
 mov_horizontal = 1
 mov_vertical = 0
 
@@ -39,7 +35,10 @@ mov_vertical = 0
 #===comienzo del juego=====
 #============================
 
-while True:    
+while True:
+    lista_frutas="o","*","#","t","$"
+    frutaa=random.randint(0,4) 
+    trut=lista_frutas[frutaa]   
     #leemos la tecla
     tecla = pantalla.getch()        
     #le asignamos una dirección a cada cursor
@@ -74,7 +73,7 @@ while True:
     #verificamos si nos morfamos una fruta
     if fruta in snake:        
         fruta=[random.randrange(alto),random.randrange(ancho)]
-        pantalla.addstr(fruta[0],fruta[1],"o")
+        pantalla.addstr(fruta[0],fruta[1],trut)
     #sino, borramos la colita
     else:
         ultimaposicion = snake.pop()
